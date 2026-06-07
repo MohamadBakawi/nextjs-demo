@@ -21,12 +21,13 @@ export default async function PublishersPage({
   const sortBy = params.sortBy || 'name';
   const sortOrder = params.sortOrder || 'asc';
 
-  let allPublishers = getAllPublishers();
+  const allPublishers = getAllPublishers();
+  let filteredPublishers = [...allPublishers];
 
   // 1. Filtering
   if (search) {
     const lowerSearch = search.toLowerCase();
-    allPublishers = allPublishers.filter(
+    filteredPublishers = allPublishers.filter(
       (p) =>
         p.name.toLowerCase().includes(lowerSearch) ||
         p.country.toLowerCase().includes(lowerSearch)
@@ -34,7 +35,7 @@ export default async function PublishersPage({
   }
 
   // 2. Sorting
-  allPublishers.sort((a, b) => {
+  filteredPublishers.sort((a, b) => {
     let valA: any = a[sortBy as keyof typeof a];
     let valB: any = b[sortBy as keyof typeof b];
 
@@ -53,9 +54,9 @@ export default async function PublishersPage({
   });
 
   // 3. Pagination
-  const totalPages = Math.ceil(allPublishers.length / PAGE_SIZE);
+  const totalPages = Math.ceil(filteredPublishers.length / PAGE_SIZE);
 
-  const publishers = allPublishers.slice(
+  const publishers = filteredPublishers.slice(
     (currentPage - 1) * PAGE_SIZE,
     currentPage * PAGE_SIZE
   );
@@ -171,7 +172,7 @@ export default async function PublishersPage({
             })}
           </tbody>
         </table>
-        
+
         {publishers.length === 0 && (
           <div className="p-8 text-center text-zinc-500 dark:text-zinc-400">
             No publishers found matching your criteria.

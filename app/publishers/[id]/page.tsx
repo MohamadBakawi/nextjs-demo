@@ -32,8 +32,8 @@ export default async function PublisherPage({
       </Link>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6">
-     
-     
+
+
         <div className="md:col-span-1">
           <div className="relative h-64 md:h-[300px] bg-zinc-200 dark:bg-zinc-800 rounded-lg overflow-hidden shadow-lg">
             <Image
@@ -46,7 +46,7 @@ export default async function PublisherPage({
           </div>
         </div>
 
-       
+
         <div className="md:col-span-2">
           <h1 className="text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-4">
             {publisher.name}
@@ -87,7 +87,7 @@ export default async function PublisherPage({
         </div>
       </div>
 
- 
+
       {books.length > 0 && (
         <div className="mt-16">
           <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-6">
